@@ -141,17 +141,40 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
     
     @objc private func handleNext(){
         print("Trying to next")
-        let nextIndex = min(pageControl.currentPage + 1, pages.count - 1)
-        let indexPath = IndexPath(item: nextIndex, section: 0)
-        pageControl.currentPage = nextIndex
+//        let nextIndex = min(pageControl.currentPage + 1, pages.count - 1)
+//        let indexPath = IndexPath(item: nextIndex, section: 0)
+//        pageControl.currentPage = nextIndex
+        
+        let nextIndex = pageControl.currentPage + 1
+        let indexPath: IndexPath
+        
+        if nextIndex == pages.count {
+            pageControl.currentPage = 0
+            indexPath = IndexPath(item: 0, section: 0)
+        } else {
+            indexPath = IndexPath(item: nextIndex, section: 0)
+            pageControl.currentPage = nextIndex
+        }
+        
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
     @objc private func handlePrev(){
         print("Trying to prev")
-        let prevIndex = max(pageControl.currentPage - 1, 0)
-        let indexPath = IndexPath(item: prevIndex, section: 0)
-        pageControl.currentPage = prevIndex
+//        let prevIndex = max(pageControl.currentPage - 1, 0)
+//        let indexPath = IndexPath(item: prevIndex, section: 0)
+//        pageControl.currentPage = prevIndex
+        
+        let prevIndex = pageControl.currentPage - 1
+        var indexPath: IndexPath
+        if prevIndex == -1 {
+            pageControl.currentPage = pages.count - 1
+            indexPath = IndexPath(item: pages.count - 1, section: 0)
+        } else {
+            indexPath = IndexPath(item: prevIndex, section: 0)
+            pageControl.currentPage = prevIndex
+        }
+        
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 }
