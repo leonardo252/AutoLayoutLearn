@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         button.setTitle("PREV", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = .boldSystemFont(ofSize: 14)
-        button.setTitleColor(.gray, for: .normal)
+        button.setTitleColor(.yellow, for: .normal)
         return button
     }()
     
